@@ -1,8 +1,21 @@
 # learnopengl.com code repository
-Contains code samples for all tutorials of [https://learnopengl.com](https://learnopengl.com). 
+Contains code samples for all tutorials of [https://learnopengl.com](https://learnopengl.com).
+
+## Lorenzo's fixes:
+I got some errors in Ubuntu 18.04 with glfw3:
+
+### Wayland: Failed to connect to display
+It's necessary to remove libglfw3-wayland:
+sudo apt-get remove --purge libglfw3-wayland
+
+### Context profiles are only defined for OpenGL version 3.2 and above
+I need to change:
+glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+To:
+glfwWindowHint(GLFW_OPENGL_ANY_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 ## Windows building
-All relevant libraries are found in /libs and all DLLs found in /dlls (pre-)compiled for Windows. 
+All relevant libraries are found in /libs and all DLLs found in /dlls (pre-)compiled for Windows.
 The CMake script knows where to find the libraries so just run CMake script and generate project of choice.
 Note that you still have to manually copy the required .DLL files from the /dlls folder to your binary folder for the binaries to run.
 
@@ -30,6 +43,6 @@ make -j8
 ```
 
 ## Glitter
-Polytonic created a project called [Glitter](https://github.com/Polytonic/Glitter) that is a dead-simple boilerplate for OpenGL. 
-Everything you need to run a single LearnOpenGL Project (including all libraries) and just that; nothing more. 
+Polytonic created a project called [Glitter](https://github.com/Polytonic/Glitter) that is a dead-simple boilerplate for OpenGL.
+Everything you need to run a single LearnOpenGL Project (including all libraries) and just that; nothing more.
 Perfect if you want to follow along with the tutorials, without the hassle of having to manually compile and link all third party libraries!
